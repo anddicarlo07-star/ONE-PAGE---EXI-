@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Page — Plano de Ação EXI | Morumbi</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #0d0d0d;
+    --ink2: #3a3a3a;
+    --ink3: #767676;
+    --border: #e2e2e2;
+    --bg: #f8f8f6;
+    --white: #ffffff;
+    --green: #1fa363;
+    --green-bg: #eaf7f1;
+    --amber: #d97706;
+    --amber-bg: #fef3e2;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --accent: #1a1a2e;
+    --accent2: #16213e;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 32px;
+  }
+
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.08);
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--accent);
+    padding: 32px 40px 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .header-left {}
+
+  .header-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 8px;
+  }
+
+  .header h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+
+  .header h1 span {
+    color: #7dd3b8;
+  }
+
+  .header-right {
+    display: flex;
+    gap: 20px;
+    flex-shrink: 0;
+  }
+
+  .kpi {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 12px 20px;
+    text-align: center;
+    min-width: 100px;
+  }
+
+  .kpi-label {
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 6px;
+  }
+
+  .kpi-value {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .kpi-value.meta { color: #7dd3b8; }
+
+  .kpi-arrow {
+    font-size: 10px;
+    color: rgba(255,255,255,0.35);
+    margin-top: 4px;
+  }
+
+  /* ── META INFO STRIP ── */
+  .meta-strip {
+    background: #f0f0ec;
+    border-bottom: 1px solid var(--border);
+    padding: 10px 40px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--ink2);
+  }
+
+  .meta-icon {
+    font-size: 14px;
+    opacity: 0.5;
+  }
+
+  .meta-item strong {
+    font-weight: 600;
+  }
+
+  /* ── BODY GRID ── */
+  .body {
+    padding: 32px 40px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
+
+  /* ── PILAR CARD ── */
+  .pilar {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .pilar-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pilar-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .pilar-title {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink);
+    flex: 1;
+  }
+
+  .pilar-count {
+    font-size: 10px;
+    color: var(--ink3);
+    font-weight: 500;
+  }
+
+  /* ── CAUSA RAIZ TAGS ── */
+  .causas {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .causa-tag {
+    font-size: 9.5px;
+    font-weight: 500;
+    background: #f2f2ef;
+    color: var(--ink2);
+    border-radius: 4px;
+    padding: 3px 7px;
+    line-height: 1.4;
+  }
+
+  /* ── AÇÕES ── */
+  .acoes {
+    padding: 8px 0;
+  }
+
+  .acao {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 16px;
+    border-bottom: 1px solid #f5f5f3;
+    transition: background 0.15s;
+  }
+
+  .acao:last-child { border-bottom: none; }
+  .acao:hover { background: #fafaf8; }
+
+  .farol {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+
+  .farol.iniciado { background: var(--green); box-shadow: 0 0 0 3px var(--green-bg); }
+  .farol.nao-iniciado { background: var(--amber); box-shadow: 0 0 0 3px var(--amber-bg); }
+  .farol.feito { background: #a0a0a0; }
+
+  .acao-body { flex: 1; min-width: 0; }
+
+  .acao-text {
+    font-size: 11.5px;
+    color: var(--ink);
+    line-height: 1.45;
+    font-weight: 400;
+  }
+
+  .acao-meta {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+  }
+
+  .acao-chip {
+    font-size: 9.5px;
+    color: var(--ink3);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  /* ── LEGENDA ── */
+  .legend {
+    padding: 20px 40px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: #fafaf8;
+  }
+
+  .legend-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-right: 4px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--ink2);
+    font-weight: 500;
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .legend-dot.green { background: var(--green); }
+  .legend-dot.amber { background: var(--amber); }
+  .legend-dot.gray { background: #a0a0a0; }
+
+  .progress-bar-wrap {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .progress-label {
+    font-size: 10px;
+    color: var(--ink3);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .progress-bar {
+    width: 140px;
+    height: 6px;
+    background: var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--green), #4ade80);
+  }
+
+  .progress-pct {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--green);
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-tag">Plano de Ação · EXI</div>
+      <h1>Loja <span>Morumbi</span></h1>
+    </div>
+    <div class="header-right">
+      <div class="kpi">
+        <div class="kpi-label">Indicador Atual</div>
+        <div class="kpi-value">45</div>
+        <div class="kpi-arrow">pontos</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Meta</div>
+        <div class="kpi-value meta">75</div>
+        <div class="kpi-arrow">pontos</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Período</div>
+        <div class="kpi-value" style="font-size:16px;padding-top:4px;">Jul–Dez</div>
+        <div class="kpi-arrow">2025</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- META INFO -->
+  <div class="meta-strip">
+    <div class="meta-item"><span class="meta-icon">👥</span><strong>Responsável:</strong> Comitê EXI e Comitê Loja</div>
+    <div class="meta-item"><span class="meta-icon">📍</span><strong>Loja:</strong> Morumbi</div>
+    <div class="meta-item"><span class="meta-icon">🗂</span><strong>Pilares:</strong> 3 frentes de ação</div>
+    <div class="meta-item"><span class="meta-icon">⚡</span><strong>Total de ações:</strong> 12 iniciativas</div>
+  </div>
+
+  <!-- CARDS BODY -->
+  <div class="body">
+
+    <!-- PILAR 1: INFRAESTRUTURA -->
+    <div class="pilar">
+      <div class="pilar-header">
+        <div class="pilar-num">1</div>
+        <div class="pilar-title">Infraestrutura</div>
+        <div class="pilar-count">5 ações</div>
+      </div>
+      <div class="causas">
+        <span class="causa-tag">Qualidade da alimentação</span>
+        <span class="causa-tag">Reforma de banheiros</span>
+        <span class="causa-tag">Área de descanso</span>
+        <span class="causa-tag">Espaço externo</span>
+      </div>
+      <div class="acoes">
+        <div class="acao">
+          <div class="farol iniciado"></div>
+          <div class="acao-body">
+            <div class="acao-text">Cardápio semanal com opções variadas (frango, ovo, calabresa) até troca do refeitório</div>
+            <div class="acao-meta">
+              <span class="acao-chip">📅 Junho</span>
+              <span class="acao-chip">👤 Cuccinare + RH</span>
+            </div>
+          </div>
+        </div>
+        <div class="acao">
+          <div class="farol nao-iniciado"></div>
+          <div class="acao-body">
+            <div class="acao-text">Pintura, troca de filtros do mictório e aumento de limpeza nos banheiros</div>
+            <div class="acao-meta">
+              <span class="acao-chip">📅 Setembro</span>
+              <span class="acao-chip">👤 Gestão</span>
+            </div>
+          </div>
+        </div>
+        <div class="acao">
+          <div class="farol nao-iniciado"></div>
+          <div class="acao-body">
+            <div class="acao-text">Reforma da sala de descanso dos colaboradores</div>
+            <div class="acao-meta">
+              <span class="acao-chip">📅 Setembro</span>
+              <span class="acao-chip">👤 Gestão</span>
+            </div>
+          </div>
+        </div>
+        <div class="acao">
+          <div class="farol nao-iniciado"></div>
+          <div class="acao-body">
+            <div class="acao-text">Reforma do Pergolado (área externa de descanso)</div>
+            <div class="acao-meta">
+              <span class="acao-chip">📅 Novembro</span>
+              <span class="acao-chip">👤 Gestão</span>
+            </div>
+          </div>
+        </div>
+        <div class="acao">
+          <div class="farol iniciado"></div>
+          <div class="acao-body">
+            <div class="acao-text">Acrescentar 30 min ao fechamento do refeitório para refeição do turno noturno</div>
+            <div class="acao-meta">
+              <span class="acao-chip">📅 Julho</span>
+              <span class="acao-chip">👤 RH + Gestão</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PILAR 2: COMUNICAÇÃO -->
+    <div class="pilar">
+      <div class="pilar-header">
+        <div class="pilar-num">2</div>
+        <div class="pilar-title">Comunicação</div>
+        <div class="pilar-count">5 ações</div>
+      </div>
+      <div class="causas">
+        <span class="causa-tag">Rotina de alinhamento</span>
+        <span class="causa-tag">Escuta ativa</span>
+        <span class="causa-tag">Feedback</span>
+        <span class="causa-tag">Canal de sugestões</span>
+      </div>
+      <div class="acoes">
+        <div class="acao">
+          <div class="farol iniciado"></div>
+          <div class="acao-body">
+            <div class="acao-text">Alinhamentos semanais por setor com gerente e coordenador</div>
+            <div class="acao-meta">
+              <span class="acao-chip">📅 Junho</span>
+              <span class="acao-chip">👤 Gerente + Coord.</span>
+            </div>
+          </div>
+        </div>
+        <div class="acao">
+          <div class="farol iniciado"></div>
+          <div class="acao-body">
+            <div class="acao-text">Ata do Boa Tarde enviada a todos os grupos de setores com participação de todas as áreas</div>
+            <div class="acao-meta">
+              <span class="acao-chip">📅 Junho</span>
+              <span class="acao-chip">👤 Plantão abertura</span>
+            </div>
+          </div>
+        </div>
+        <div class="acao">
+          <div class="farol nao-iniciado"></div>
+          <div class="acao-body">
+            <div class="acao-text">Rodas de conversa periódicas entre líderes e equipes</div>
+            <div class="acao-meta">
+              <span class="acao-chip">📅 Julho</span>
+              <span class="acao-chip">👤 RH + Comitê</span>
+            </div>
+          </div>
+        </div>
+        <div class="acao">
+          <div class="farol nao-iniciado"></div>
+          <div class="acao-body">
+            <div class="acao-text">Rotina mínima de feedback individual trimestral</div>
+            <div class="acao-meta">
+              <span class="acao-chip">📅 Julho</span>
+              <span class="acao-chip">👤 Feed. com o time</span>
+            </div>
+          </div>
+        </div>
+        <div class="acao">
+          <div class="farol nao-iniciado"></div>
+          <div class="acao-body">
+            <div class="acao-text">Canal digital de ideias e sugestões + jornal informativo da loja</div>
+            <div class="acao-meta">
+              <span class="acao-chip">📅 Julho</span>
+              <span class="acao-chip">👤 Ouvir previamente</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PILAR 3: RECONHECIMENTO -->
+    <div class="pilar">
+      <div class="pilar-header">
+        <div class="pilar-num">3</div>
+        <div class="pilar-title">Reconhecimento e Valorização</div>
+        <div class="pilar-count">3 ações</div>
+      </div>
+      <div class="causas">
+        <span class="causa-tag">Líder Adeo</span>
+        <span class="causa-tag">Protagonismo do time</span>
+        <span class="causa-tag">Áreas de apoio</span>
+        <span class="causa-tag">Liderança próxima</span>
+      </div>
+      <div class="acoes">
+        <div class="acao">
+          <div class="farol nao-iniciado"></div>
+          <div class="acao-body">
+            <div class="acao-text">Líder Adeo quinzenalmente apresentado no Boa Tarde — valorização coletiva pelo time</div>
+            <div class="acao-meta">
+              <span class="acao-chip">📅 A partir de Julho</span>
+              <span class="acao-chip">👤 RH + Nathalia + Igor</span>
+            </div>
+          </div>
+        </div>
+        <div class="acao">
+          <div class="farol nao-iniciado"></div>
+          <div class="acao-body">
+            <div class="acao-text">Semana da Valorização: apresentação de todos os indicadores por setor nos Boa Tardes</div>
+            <div class="acao-meta">
+              <span class="acao-chip">📅 A partir de Julho</span>
+              <span class="acao-chip">👤 Comitê EXI</span>
+            </div>
+          </div>
+        </div>
+        <div class="acao">
+          <div class="farol nao-iniciado"></div>
+          <div class="acao-body">
+            <div class="acao-text">Almoço dos Campeões: celebração dos melhores por indicador (feijoada/data a definir)</div>
+            <div class="acao-meta">
+              <span class="acao-chip">📅 A partir de Julho</span>
+              <span class="acao-chip">👤 Comitê Loja</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- LEGEND + PROGRESS -->
+  <div class="legend">
+    <span class="legend-label">Status</span>
+    <div class="legend-item"><div class="legend-dot green"></div> Iniciado</div>
+    <div class="legend-item"><div class="legend-dot amber"></div> Não iniciado</div>
+    <div class="legend-item"><div class="legend-dot gray"></div> Feito</div>
+
+    <div class="progress-bar-wrap">
+      <span class="progress-label">Ações iniciadas</span>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 33%"></div>
+      </div>
+      <span class="progress-pct">4 de 12</span>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+</body>
+</html>
