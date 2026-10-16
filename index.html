@@ -16,12 +16,15 @@
     --border: #e2e2e2;
     --bg: #f8f8f6;
     --white: #ffffff;
-    --green: #1fa363;
-    --green-bg: #eaf7f1;
-    --amber: #d97706;
-    --amber-bg: #fef3e2;
-    --red: #dc2626;
-    --red-bg: #fef2f2;
+    
+    /* Cores atualizadas conforme solicitação */
+    --green: #10b981;      /* Concluído */
+    --green-bg: #d1fae5;
+    --amber: #f59e0b;      /* Iniciada */
+    --amber-bg: #fef3c7;
+    --orange: #f97316;     /* Ainda não iniciada */
+    --orange-bg: #ffedd5;
+
     --accent: #1a1a2e;
     --accent2: #16213e;
   }
@@ -35,7 +38,7 @@
   }
 
   .page {
-    max-width: 1100px;
+    max-width: 1280px;
     margin: 0 auto;
     background: var(--white);
     border-radius: 16px;
@@ -52,8 +55,6 @@
     justify-content: space-between;
     gap: 24px;
   }
-
-  .header-left {}
 
   .header-tag {
     display: inline-block;
@@ -143,12 +144,19 @@
     font-weight: 600;
   }
 
+  /* ── MAIN CONTENT (GRID + SIDEBAR) ── */
+  .content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 24px;
+    padding: 32px 40px 40px;
+  }
+
   /* ── BODY GRID ── */
   .body {
-    padding: 32px 40px 40px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 24px;
+    gap: 20px;
   }
 
   /* ── PILAR CARD ── */
@@ -157,6 +165,8 @@
     border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
   .pilar-header {
@@ -198,17 +208,18 @@
 
   /* ── CAUSA RAIZ TAGS ── */
   .causas {
-    padding: 12px 16px;
+    padding: 10px 14px;
     border-bottom: 1px solid var(--border);
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
+    background: #fafaf8;
   }
 
   .causa-tag {
     font-size: 9.5px;
     font-weight: 500;
-    background: #f2f2ef;
+    background: #eaeaea;
     color: var(--ink2);
     border-radius: 4px;
     padding: 3px 7px;
@@ -217,14 +228,15 @@
 
   /* ── AÇÕES ── */
   .acoes {
-    padding: 8px 0;
+    padding: 6px 0;
+    flex: 1;
   }
 
   .acao {
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    padding: 9px 16px;
+    padding: 10px 14px;
     border-bottom: 1px solid #f5f5f3;
     transition: background 0.15s;
   }
@@ -233,16 +245,17 @@
   .acao:hover { background: #fafaf8; }
 
   .farol {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     flex-shrink: 0;
-    margin-top: 5px;
+    margin-top: 4px;
   }
 
-  .farol.iniciado { background: var(--green); box-shadow: 0 0 0 3px var(--green-bg); }
-  .farol.nao-iniciado { background: var(--amber); box-shadow: 0 0 0 3px var(--amber-bg); }
-  .farol.feito { background: #a0a0a0; }
+  /* Novas regras dos faróis e cores */
+  .farol.concluido { background: var(--green); box-shadow: 0 0 0 3px var(--green-bg); }
+  .farol.iniciado { background: var(--amber); box-shadow: 0 0 0 3px var(--amber-bg); }
+  .farol.nao-iniciado { background: var(--orange); box-shadow: 0 0 0 3px var(--orange-bg); }
 
   .acao-body { flex: 1; min-width: 0; }
 
@@ -253,11 +266,16 @@
     font-weight: 400;
   }
 
+  .acao.concluido-item .acao-text {
+    color: var(--ink2);
+  }
+
   .acao-meta {
     display: flex;
     gap: 8px;
-    margin-top: 4px;
+    margin-top: 5px;
     flex-wrap: wrap;
+    align-items: center;
   }
 
   .acao-chip {
@@ -269,9 +287,148 @@
     gap: 3px;
   }
 
-  /* ── LEGENDA ── */
+  .status-tag {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .status-tag.concluido { background: var(--green-bg); color: #047857; }
+  .status-tag.iniciado { background: var(--amber-bg); color: #b45309; }
+  .status-tag.nao-iniciado { background: var(--orange-bg); color: #c2410c; }
+
+  /* ── SIDEBAR MEDIDOR DE EXECUÇÃO ── */
+  .sidebar-medidor {
+    background: #fafaf8;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .medidor-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+  }
+
+  .medidor-title {
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .medidor-subtitle {
+    font-size: 11px;
+    color: var(--ink3);
+  }
+
+  /* Grande Score executado */
+  .executado-box {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .executado-pct {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .executado-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink3);
+  }
+
+  /* Medidor Visual Barra Composta */
+  .stacked-bar-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .stacked-bar {
+    height: 14px;
+    width: 100%;
+    background: #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+  }
+
+  .seg-concluido { background: var(--green); height: 100%; }
+  .seg-iniciado { background: var(--amber); height: 100%; }
+  .seg-pendente { background: var(--orange); height: 100%; }
+
+  /* Lista de Métricas VS */
+  .vs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .vs-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .vs-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .vs-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .vs-dot.concluido { background: var(--green); }
+  .vs-dot.iniciado { background: var(--amber); }
+  .vs-dot.pendente { background: var(--orange); }
+
+  .vs-text {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .vs-val {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--ink);
+  }
+
+  .vs-val span {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--ink3);
+  }
+
+  /* ── LEGENDA RODAPÉ ── */
   .legend {
-    padding: 20px 40px;
+    padding: 16px 40px;
     border-top: 1px solid var(--border);
     display: flex;
     align-items: center;
@@ -294,158 +451,41 @@
     gap: 6px;
     font-size: 11px;
     color: var(--ink2);
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .legend-dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
   }
 
   .legend-dot.green { background: var(--green); }
   .legend-dot.amber { background: var(--amber); }
-  .legend-dot.gray { background: #a0a0a0; }
-
-  .progress-bar-wrap {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .progress-label {
-    font-size: 10px;
-    color: var(--ink3);
-    font-weight: 600;
-    white-space: nowrap;
-  }
-
-  .progress-bar {
-    width: 140px;
-    height: 6px;
-    background: var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    border-radius: 10px;
-    background: linear-gradient(90deg, var(--green), #4ade80);
-  }
-
-  .progress-pct {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--green);
-  }
+  .legend-dot.orange { background: var(--orange); }
 
   @media print {
     body { background: white; padding: 0; }
     .page { box-shadow: none; border-radius: 0; }
   }
 
-  /* ── MOBILE ── */
-  @media (max-width: 768px) {
-    body {
-      padding: 0;
-      background: var(--accent);
-    }
-
-    .page {
-      border-radius: 0;
-      box-shadow: none;
-    }
-
-    /* Header mobile */
-    .header {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 24px 20px 20px;
-      gap: 20px;
-    }
-
-    .header h1 {
-      font-size: 22px;
-    }
-
-    .header-right {
-      width: 100%;
-      gap: 10px;
-    }
-
-    .kpi {
-      flex: 1;
-      min-width: 0;
-      padding: 10px 12px;
-    }
-
-    .kpi-value {
-      font-size: 22px;
-    }
-
-    /* Meta strip mobile */
-    .meta-strip {
-      padding: 12px 20px;
-      flex-wrap: wrap;
-      gap: 10px 20px;
-    }
-
-    .meta-item {
-      font-size: 11px;
-    }
-
-    /* Body: coluna única */
-    .body {
-      padding: 16px;
+  /* ── MOBILE / RESPONSIVO ── */
+  @media (max-width: 992px) {
+    .content-wrapper {
       grid-template-columns: 1fr;
-      gap: 16px;
     }
+    .body {
+      grid-template-columns: 1fr;
+    }
+  }
 
-    /* Pilar cards */
-    .pilar-header {
-      padding: 12px 14px;
-    }
-
-    .pilar-title {
-      font-size: 12px;
-    }
-
-    .causas {
-      padding: 10px 14px;
-    }
-
-    .acao {
-      padding: 10px 14px;
-    }
-
-    .acao-text {
-      font-size: 12.5px;
-    }
-
-    .acao-chip {
-      font-size: 10px;
-    }
-
-    /* Legend mobile */
-    .legend {
-      padding: 14px 20px;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .progress-bar-wrap {
-      margin-left: 0;
-      width: 100%;
-      justify-content: flex-start;
-      border-top: 1px solid var(--border);
-      padding-top: 10px;
-    }
-
-    .progress-bar {
-      flex: 1;
-    }
+  @media (max-width: 768px) {
+    body { padding: 0; background: var(--accent); }
+    .page { border-radius: 0; box-shadow: none; }
+    .header { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+    .meta-strip { padding: 12px 20px; flex-wrap: wrap; gap: 10px 20px; }
+    .content-wrapper { padding: 16px; }
+    .legend { padding: 14px 20px; flex-wrap: wrap; }
   }
 
 </style>
@@ -487,205 +527,264 @@
     <div class="meta-item"><span class="meta-icon">⚡</span><strong>Total de ações:</strong> 13 iniciativas</div>
   </div>
 
-  <!-- CARDS BODY -->
-  <div class="body">
+  <!-- CONTENT WRAPPER (CARDS + SIDEBAR MEDIDOR) -->
+  <div class="content-wrapper">
 
-    <!-- PILAR 1: INFRAESTRUTURA -->
-    <div class="pilar">
-      <div class="pilar-header">
-        <div class="pilar-num">1</div>
-        <div class="pilar-title">Infraestrutura</div>
-        <div class="pilar-count">6 ações</div>
-      </div>
-      <div class="causas">
-        <span class="causa-tag">Reforma de banheiros</span>
-        <span class="causa-tag">Área de descanso</span>
-        <span class="causa-tag">Espaço externo</span>
-      </div>
-      <div class="acoes">
-        <div class="acao">
-          <div class="farol feito"></div>
-          <div class="acao-body">
-            <div class="acao-text">Cardápio semanal com opções variadas (frango, ovo, calabresa) até reforma do refeitório</div>
-            <div class="acao-meta">
-              <span class="acao-chip">📅 Junho</span>
-              <span class="acao-chip">👤 Cuccinare + RH</span>
-            </div>
-          </div>
-        </div>
-        <div class="acao">
-          <div class="farol iniciado"></div>
-          <div class="acao-body">
-            <div class="acao-text">Pintura, troca de filtros do mictório e aumento de limpeza nos banheiros</div>
-            <div class="acao-meta">
-              <span class="acao-chip">📅 Setembro</span>
-              <span class="acao-chip">👤 Gestão</span>
-            </div>
-          </div>
-        </div>
-        <div class="acao">
-          <div class="farol feito"></div>
-          <div class="acao-body">
-            <div class="acao-text">Reforma da sala de descanso (interna) e pergolado da loja (externa)</div>
-            <div class="acao-meta">
-              <span class="acao-chip">📅 Setembro / Novembro</span>
-              <span class="acao-chip">👤 Gestão</span>
-            </div>
-          </div>
-        </div>
-        <div class="acao">
-          <div class="farol feito"></div>
-          <div class="acao-body">
-            <div class="acao-text">Acrescentar 30 min ao fechamento do refeitório para refeição do turno noturno</div>
-            <div class="acao-meta">
-              <span class="acao-chip">📅 Julho</span>
-              <span class="acao-chip">👤 RH + Gestão</span>
-            </div>
-          </div>
-        </div>
-        <div class="acao">
-          <div class="farol feito"></div>
-          <div class="acao-body">
-            <div class="acao-text">Redução da operação de domingo para 20hrs</div>
-            <div class="acao-meta">
-              <span class="acao-chip">📅 Julho</span>
-              <span class="acao-chip">👤 Gestão</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- CARDS BODY -->
+    <div class="body">
 
-    <!-- PILAR 2: COMUNICAÇÃO -->
-    <div class="pilar">
-      <div class="pilar-header">
-        <div class="pilar-num">2</div>
-        <div class="pilar-title">Comunicação</div>
-        <div class="pilar-count">5 ações</div>
+      <!-- PILAR 1: INFRAESTRUTURA -->
+      <div class="pilar">
+        <div class="pilar-header">
+          <div class="pilar-num">1</div>
+          <div class="pilar-title">Infraestrutura</div>
+          <div class="pilar-count">6 ações</div>
+        </div>
+        <div class="causas">
+          <span class="causa-tag">Reforma de banheiros</span>
+          <span class="causa-tag">Área de descanso</span>
+          <span class="causa-tag">Espaço externo</span>
+        </div>
+        <div class="acoes">
+          <!-- Concluída (Seta) -->
+          <div class="acao concluido-item">
+            <div class="farol concluido"></div>
+            <div class="acao-body">
+              <div class="acao-text">Cardápio semanal com opções variadas (frango, ovo, calabresa) até reforma do refeitório</div>
+              <div class="acao-meta">
+                <span class="acao-chip">📅 Junho</span>
+                <span class="status-tag concluido">Concluído</span>
+              </div>
+            </div>
+          </div>
+          <!-- Iniciada -->
+          <div class="acao">
+            <div class="farol iniciado"></div>
+            <div class="acao-body">
+              <div class="acao-text">Pintura, troca de filtros do mictório e aumento de limpeza nos banheiros</div>
+              <div class="acao-meta">
+                <span class="acao-chip">📅 Setembro</span>
+                <span class="status-tag iniciado">Iniciada</span>
+              </div>
+            </div>
+          </div>
+          <!-- Concluída (Seta) -->
+          <div class="acao concluido-item">
+            <div class="farol concluido"></div>
+            <div class="acao-body">
+              <div class="acao-text">Reforma da sala de descanso (interna) e pergolado da loja (externa)</div>
+              <div class="acao-meta">
+                <span class="acao-chip">📅 Set/Nov</span>
+                <span class="status-tag concluido">Concluído</span>
+              </div>
+            </div>
+          </div>
+          <!-- Concluída (Seta) -->
+          <div class="acao concluido-item">
+            <div class="farol concluido"></div>
+            <div class="acao-body">
+              <div class="acao-text">Acrescentar 30 min ao fechamento do refeitório para refeição do turno noturno</div>
+              <div class="acao-meta">
+                <span class="acao-chip">📅 Julho</span>
+                <span class="status-tag concluido">Concluído</span>
+              </div>
+            </div>
+          </div>
+          <!-- Concluída (Seta) -->
+          <div class="acao concluido-item">
+            <div class="farol concluido"></div>
+            <div class="acao-body">
+              <div class="acao-text">Redução da operação de domingo para 20hrs</div>
+              <div class="acao-meta">
+                <span class="acao-chip">📅 Julho</span>
+                <span class="status-tag concluido">Concluído</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="causas">
-        <span class="causa-tag">Rotina de alinhamento</span>
-        <span class="causa-tag">Escuta ativa</span>
-        <span class="causa-tag">Feedback</span>
-        <span class="causa-tag">Canal de sugestões</span>
-      </div>
-      <div class="acoes">
-        <div class="acao">
-          <div class="farol feito"></div>
-          <div class="acao-body">
-            <div class="acao-text">Alinhamentos semanais por setor com gerente e coordenador</div>
-            <div class="acao-meta">
-              <span class="acao-chip">📅 Junho</span>
-              <span class="acao-chip">👤 Gerente + Coord.</span>
-            </div>
-          </div>
-        </div>
-        <div class="acao">
-          <div class="farol feito"></div>
-          <div class="acao-body">
-            <div class="acao-text">Ata do Boa Tarde enviada a todos os grupos de setores com participação de todas as áreas</div>
-            <div class="acao-meta">
-              <span class="acao-chip">📅 Junho</span>
-              <span class="acao-chip">👤 Plantão abertura</span>
-            </div>
-          </div>
-        </div>
-        <div class="acao">
-          <div class="farol nao-iniciado"></div>
-          <div class="acao-body">
-            <div class="acao-text">Rodas de conversa periódicas entre líderes e equipes</div>
-            <div class="acao-meta">
-              <span class="acao-chip">📅 Julho</span>
-              <span class="acao-chip">👤 RH + Comitê</span>
-            </div>
-          </div>
-        </div>
-        <div class="acao">
-          <div class="farol feito"></div>
-          <div class="acao-body">
-            <div class="acao-text">Rotina mínima de feedback individual trimestral</div>
-            <div class="acao-meta">
-              <span class="acao-chip">📅 Julho</span>
-              <span class="acao-chip">👤 Feed. com o time</span>
-            </div>
-          </div>
-        </div>
-        <div class="acao">
-          <div class="farol iniciado"></div>
-          <div class="acao-body">
-            <div class="acao-text">Canal digital de ideias e sugestões + jornal informativo da loja</div>
-            <div class="acao-meta">
-              <span class="acao-chip">📅 Julho</span>
-              <span class="acao-chip">👤 Ouvir previamente</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- PILAR 3: RECONHECIMENTO -->
-    <div class="pilar">
-      <div class="pilar-header">
-        <div class="pilar-num">3</div>
-        <div class="pilar-title">Reconhecimento e Valorização</div>
-        <div class="pilar-count">3 ações</div>
-      </div>
-      <div class="causas">
-        <span class="causa-tag">Líder Adeo</span>
-        <span class="causa-tag">Protagonismo do time</span>
-        <span class="causa-tag">Áreas de apoio</span>
-        <span class="causa-tag">Liderança próxima</span>
-      </div>
-      <div class="acoes">
-        <div class="acao">
-          <div class="farol feito"></div>
-          <div class="acao-body">
-            <div class="acao-text">Líder Adeo quinzenalmente apresentado no Boa Tarde — valorização coletiva pelo time</div>
-            <div class="acao-meta">
-              <span class="acao-chip">📅 A partir de Julho</span>
-              <span class="acao-chip">👤 RH + Nathalia + Igor</span>
+      <!-- PILAR 2: COMUNICAÇÃO -->
+      <div class="pilar">
+        <div class="pilar-header">
+          <div class="pilar-num">2</div>
+          <div class="pilar-title">Comunicação</div>
+          <div class="pilar-count">5 ações</div>
+        </div>
+        <div class="causas">
+          <span class="causa-tag">Rotina de alinhamento</span>
+          <span class="causa-tag">Escuta ativa</span>
+          <span class="causa-tag">Feedback</span>
+          <span class="causa-tag">Canal de sugestões</span>
+        </div>
+        <div class="acoes">
+          <!-- Concluída (Seta) -->
+          <div class="acao concluido-item">
+            <div class="farol concluido"></div>
+            <div class="acao-body">
+              <div class="acao-text">Alinhamentos semanais por setor com gerente e coordenador</div>
+              <div class="acao-meta">
+                <span class="acao-chip">📅 Junho</span>
+                <span class="status-tag concluido">Concluído</span>
+              </div>
+            </div>
+          </div>
+          <!-- Concluída (Seta) -->
+          <div class="acao concluido-item">
+            <div class="farol concluido"></div>
+            <div class="acao-body">
+              <div class="acao-text">Ata do Boa Tarde enviada a todos os grupos de setores com participação de todas as áreas</div>
+              <div class="acao-meta">
+                <span class="acao-chip">📅 Junho</span>
+                <span class="status-tag concluido">Concluído</span>
+              </div>
+            </div>
+          </div>
+          <!-- Não iniciada -->
+          <div class="acao">
+            <div class="farol nao-iniciado"></div>
+            <div class="acao-body">
+              <div class="acao-text">Rodas de conversa periódicas entre líderes e equipes</div>
+              <div class="acao-meta">
+                <span class="acao-chip">📅 Julho</span>
+                <span class="status-tag nao-iniciado">Não iniciada</span>
+              </div>
+            </div>
+          </div>
+          <!-- Concluída (Seta) -->
+          <div class="acao concluido-item">
+            <div class="farol concluido"></div>
+            <div class="acao-body">
+              <div class="acao-text">Rotina mínima de feedback individual trimestral</div>
+              <div class="acao-meta">
+                <span class="acao-chip">📅 Julho</span>
+                <span class="status-tag concluido">Concluído</span>
+              </div>
+            </div>
+          </div>
+          <!-- Iniciada -->
+          <div class="acao">
+            <div class="farol iniciado"></div>
+            <div class="acao-body">
+              <div class="acao-text">Canal digital de ideias e sugestões + jornal informativo da loja</div>
+              <div class="acao-meta">
+                <span class="acao-chip">📅 Julho</span>
+                <span class="status-tag iniciado">Iniciada</span>
+              </div>
             </div>
           </div>
         </div>
-        <div class="acao">
-          <div class="farol feito"></div>
-          <div class="acao-body">
-            <div class="acao-text">Semana da Valorização: apresentação de todos os indicadores por setor nos Boa Tardes</div>
-            <div class="acao-meta">
-              <span class="acao-chip">📅 A partir de Julho</span>
-              <span class="acao-chip">👤 Comitê EXI</span>
-            </div>
-          </div>
-        </div>
-        <div class="acao">
-          <div class="farol feito"></div>
-          <div class="acao-body">
-            <div class="acao-text">Almoço dos Campeões: celebração dos melhores por indicador (feijoada/data a definir)</div>
-            <div class="acao-meta">
-              <span class="acao-chip">📅 A partir de Julho</span>
-              <span class="acao-chip">👤 Comitê Loja</span>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
 
-  </div><!-- /body -->
+      <!-- PILAR 3: RECONHECIMENTO -->
+      <div class="pilar">
+        <div class="pilar-header">
+          <div class="pilar-num">3</div>
+          <div class="pilar-title">Reconhecimento e Valorização</div>
+          <div class="pilar-count">3 ações</div>
+        </div>
+        <div class="causas">
+          <span class="causa-tag">Líder Adeo</span>
+          <span class="causa-tag">Protagonismo</span>
+          <span class="causa-tag">Apoio</span>
+          <span class="causa-tag">Proximidade</span>
+        </div>
+        <div class="acoes">
+          <!-- Concluída (Seta) -->
+          <div class="acao concluido-item">
+            <div class="farol concluido"></div>
+            <div class="acao-body">
+              <div class="acao-text">Líder Adeo quinzenalmente apresentado no Boa Tarde — valorização coletiva</div>
+              <div class="acao-meta">
+                <span class="acao-chip">📅 A partir de Julho</span>
+                <span class="status-tag concluido">Concluído</span>
+              </div>
+            </div>
+          </div>
+          <!-- Concluída (Seta) -->
+          <div class="acao concluido-item">
+            <div class="farol concluido"></div>
+            <div class="acao-body">
+              <div class="acao-text">Semana da Valorização: apresentação de todos os indicadores por setor</div>
+              <div class="acao-meta">
+                <span class="acao-chip">📅 A partir de Julho</span>
+                <span class="status-tag concluido">Concluído</span>
+              </div>
+            </div>
+          </div>
+          <!-- Concluída (Seta) -->
+          <div class="acao concluido-item">
+            <div class="farol concluido"></div>
+            <div class="acao-body">
+              <div class="acao-text">Almoço dos Campeões: celebração dos melhores por indicador</div>
+              <div class="acao-meta">
+                <span class="acao-chip">📅 A partir de Julho</span>
+                <span class="status-tag concluido">Concluído</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <!-- LEGEND + PROGRESS -->
+    </div><!-- /body -->
+
+    <!-- MEDIDOR LATERAL (SITUAÇÃO / EXECUTADO VS PENDENTE) -->
+    <aside class="sidebar-medidor">
+      <div class="medidor-header">
+        <div class="medidor-title">Medição de Executado</div>
+        <div class="medidor-subtitle">Realizado vs. Pendente</div>
+      </div>
+
+      <div class="executado-box">
+        <div class="executado-pct">77%</div>
+        <div class="executado-label">Ações Concluídas</div>
+      </div>
+
+      <!-- Barra Composta de Progresso -->
+      <div class="stacked-bar-container">
+        <div class="stacked-bar">
+          <div class="seg-concluido" style="width: 76.9%;" title="Concluído: 76.9%"></div>
+          <div class="seg-iniciado" style="width: 15.4%;" title="Iniciado: 15.4%"></div>
+          <div class="seg-pendente" style="width: 7.7%;" title="Não iniciado: 7.7%"></div>
+        </div>
+      </div>
+
+      <!-- Lista VS -->
+      <div class="vs-list">
+        <div class="vs-item">
+          <div class="vs-info">
+            <div class="vs-dot concluido"></div>
+            <span class="vs-text">Concluídas</span>
+          </div>
+          <div class="vs-val">10 <span>/ 13</span></div>
+        </div>
+
+        <div class="vs-item">
+          <div class="vs-info">
+            <div class="vs-dot iniciado"></div>
+            <span class="vs-text">Iniciadas</span>
+          </div>
+          <div class="vs-val">2 <span>/ 13</span></div>
+        </div>
+
+        <div class="vs-item">
+          <div class="vs-info">
+            <div class="vs-dot pendente"></div>
+            <span class="vs-text">Não Iniciadas</span>
+          </div>
+          <div class="vs-val">1 <span>/ 13</span></div>
+        </div>
+      </div>
+    </aside>
+
+  </div><!-- /content-wrapper -->
+
+  <!-- LEGEND RODAPÉ -->
   <div class="legend">
     <span class="legend-label">Status</span>
-    <div class="legend-item"><div class="legend-dot green"></div> Iniciado</div>
-    <div class="legend-item"><div class="legend-dot amber"></div> Não iniciado</div>
-    <div class="legend-item"><div class="legend-dot gray"></div> Feito</div>
-
-    <div class="progress-bar-wrap">
-      <span class="progress-label">Ações concluídas</span>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width: 77%"></div>
-      </div>
-      <span class="progress-pct">10 de 13</span>
-    </div>
+    <div class="legend-item"><div class="legend-dot green"></div> Concluído (Verde)</div>
+    <div class="legend-item"><div class="legend-dot amber"></div> Iniciada (Amarelo)</div>
+    <div class="legend-item"><div class="legend-dot orange"></div> Não iniciada (Laranja)</div>
   </div>
 
 </div><!-- /page -->
